@@ -23,7 +23,10 @@ app.use(
     extended: true,
   })
 );
+
 app.use(bodyParser.json());
+
+const port = parseInt(process.env.PORT);
 
 const saltRounds = parseInt(process.env.SALTROUNDS);
 
@@ -58,6 +61,10 @@ const matchPassword = async (password, hashPassword) => {
   const match = await bcrypt.compare(password, hashPassword);
   return match;
 };
+
+app.get("/api", (req,res) => {
+  res.json({message: "App is running"});
+})
 
 app.post("/api/register", async (req, res) => {
   if (req.body.username.length === 0 || req.body.password.length === 0) {
@@ -211,6 +218,6 @@ app.post("/api/secret", verifyToken, async (req, res) => {
     .json({ message: "Successfully created secret", newSecret: add });
 });
 
-app.listen(5000, () => {
-  console.log("Server started at port 5000");
+app.listen(port, () => {
+  console.log(`Server started at port ${port}`);
 });
