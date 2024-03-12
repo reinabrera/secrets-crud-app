@@ -6,15 +6,22 @@ import pg from "pg";
 import jwt from "jsonwebtoken";
 import cors from "cors";
 
-const db = new pg.Client({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASS,
-  port: process.env.DB_PORT,
-});
+// const db = new pg.Client({
+//   user: process.env.DB_USER,
+//   host: process.env.DB_HOST,
+//   database: process.env.DB_NAME,
+//   password: process.env.DB_PASS,
+//   port: process.env.DB_PORT,
+// });
 
-db.connect();
+const db = new pg.Client({
+  connectionString: process.env.POSTGRES_URL ,
+})
+
+db.connect((err) => {
+  if(err) throw err
+  console.log("db connection success!")
+});
 
 const app = express();
 app.use(cors());
