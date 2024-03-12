@@ -4,6 +4,7 @@ import { Home, Login, Secrets, YourSecrets } from "./pages/Pages";
 import Register from "./pages/Register";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import { AuthProvider } from "./components/AuthWrapper/AuthWrapper";
+import "./bootstrap-social.css";
 
 function App() {
   return (
