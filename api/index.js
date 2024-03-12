@@ -19,8 +19,8 @@ const db = new pg.Client({
 })
 
 db.connect((err) => {
-  if(err) throw err
-  console.log("db connection success!")
+  if (err) throw err
+  console.log("db connection success!");
 });
 
 const app = express();
