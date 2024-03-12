@@ -1,0 +1,96 @@
+
+body {
+  background-color: #E8ECEF;
+}
+
+.centered {
+    padding-top: 200px;
+    text-align: center;
+}
+
+.secret-text {
+  text-align: center;
+  font-size: 2rem;
+  color: #fff;
+  background-color: #000;
+}
+
+button {
+  border: 0;
+  outline: 0;
+  background: none;
+  padding: 0;
+}
+
+.loader-wrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loader {
+  width: 5rem;
+  height: 5rem;
+  border: 6px solid #8e8e8e;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+  }
+
+  @keyframes rotation {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+} 
+
+.your-secrets ul {
+  padding: 0;
+  list-style: none;
+  margin: 0 auto;
+}
+
+.your-secrets ul li .secret-item-wrapper {
+  padding: 10px;
+}
+
+.your-secrets ul li p {
+  margin: 0;
+}
+.your-secrets ul li:not(:first-child) {
+  margin-top: 5px;
+}
+
+.create-secret textarea{
+  width: 100%;
+  resize: none;
+}
+
+.secret-text-item  {
+  font-size: 1.2rem;
+}
+
+.secret-item.new:first-child {
+  animation: newSecret 1s;
+}
+
+@keyframes newSecret {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 1000px;
+  }
+}
+
+
+.empty-secrets {
+  min-height: 350px;
+}
