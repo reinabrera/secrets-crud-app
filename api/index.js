@@ -218,6 +218,6 @@ app.post("/api/secret", verifyToken, async (req, res) => {
     .json({ message: "Successfully created secret", newSecret: add });
 });
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
   console.log(`Server started at port ${port}`);
 });
