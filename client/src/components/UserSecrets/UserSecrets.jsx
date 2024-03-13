@@ -3,9 +3,11 @@ import UserSecretsItem from "./UserSecretsItem";
 
 export default function UserSecrets({ secrets, auth, setSecrets }) {
   const [error, setError] = useState("");
+  const mode = import.meta.env.VITE_MODE;
+  const url = import.meta.env.VITE_API_URL;
 
   const handleDelete = (id) => {
-    fetch(`/api/secret/${id}`, {
+    fetch(`${mode == 'production' ? url : ""}/api/secret/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: "Bearer " + auth,
@@ -24,7 +26,7 @@ export default function UserSecrets({ secrets, auth, setSecrets }) {
   };
 
   const handleUpdate = (id, text) => {
-    fetch(`/api/secret/${id}`, {
+    fetch(`${mode == 'production' ? url : ""}/api/secret/${id}`, {
       method: "PATCH",
       headers: {
         Authorization: "Bearer " + auth,

@@ -8,10 +8,12 @@ export default function YourSecrets() {
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
   const { user } = useAuth();
+  const mode = import.meta.env.VITE_MODE;
+  const url = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     if (user.token) {
-      fetch("api/userSecrets", {
+      fetch(`${mode == 'production' ? url : ""}/api/userSecrets`, {
         method: "GET",
         headers: {
           Authorization: "Bearer " + user.token,
@@ -33,7 +35,7 @@ export default function YourSecrets() {
   const handleSubmit = (e) => {
     e.preventDefault();
     e.target.firstChild.value = "";
-    fetch("/api/secret", {
+    fetch(`${mode == 'production' ? url : ""}/api/secret`, {
       method: "POST",
       headers: {
         Authorization: "Bearer " + user.token,

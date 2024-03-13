@@ -7,8 +7,11 @@ export default function Register() {
   const [ error, setError ] = useState("");
   const { user } = useAuth();
   const navigateTo = useNavigate();
+  const mode = import.meta.env.VITE_MODE;
+  const url = import.meta.env.VITE_API_URL;
+
   const handleSubmit = (creds) => {
-    fetch("/api/register", {
+    fetch(`${mode == 'production' ? url : ""}/api/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(creds),

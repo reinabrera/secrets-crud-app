@@ -5,10 +5,11 @@ import Logout from "../components/Logout/Logout";
 export default function Secrets() {
   const [ secret, setSecret] = useState("");
   const token = localStorage.getItem("token");
-
+  const mode = import.meta.env.VITE_MODE;
+  const url = import.meta.env.VITE_API_URL;
 
   const fetchSecret = () => {
-    fetch("/api/secrets", {
+    fetch(`${mode == 'production' ? url : ""}/api/secrets`, {
       method: "GET",
       headers: {
         Authorization: "Bearer " + token,

@@ -6,10 +6,12 @@ const AuthContext = createContext();
 export function AuthProvider({ children }) {
   const [user, setUser] = useState({token:localStorage.getItem("token") || "", username:""});
   const [loading, setLoading] = useState(true);
+  const mode = import.meta.env.VITE_MODE;
+  const url = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     if (user.token) {
-      fetch("api/checkAuth", {
+      fetch(`${mode == 'production' ? url : ""}/api/checkAuth`, {
         method: "GET",
         headers: {
           Authorization: "Bearer " + user.token,

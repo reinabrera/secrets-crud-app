@@ -7,9 +7,11 @@ export default function Login() {
   const [error, setError] = useState("");
   const { user, setUser } = useAuth();
   const navigateTo = useNavigate();
+  const mode = import.meta.env.VITE_MODE;
+  const url = import.meta.env.VITE_API_URL;
 
   const handleSubmit = (creds) => {
-    fetch("/api/login", {
+    fetch(`${mode == 'production' ? url : ""}/api/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(creds),
