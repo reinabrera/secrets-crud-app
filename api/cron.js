@@ -12,16 +12,16 @@ async function main() {
     const deleteSecretsQuery = `
       DELETE FROM secrets
       WHERE secret_id > 24
-      AND created_at <= NOW() - interval '5 minutes';
+      AND created_at <= NOW() - interval '24 hours';
     `;
 
     const deleteUsersQuery = `
     DELETE FROM users
     WHERE id > 3
-    AND created_at <= NOW() - interval '5 minutes';
+    AND created_at <= NOW() - interval '24 hours';
     `;
 
-    
+
     const deleteSecrets = await client.query(deleteSecretsQuery);
     console.log(`${deleteSecrets.rowCount} rows deleted in secrets table.`);
     if (deleteSecrets) {
