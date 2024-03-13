@@ -24,7 +24,13 @@ db.connect((err) => {
 });
 
 const app = express();
-app.use(cors());
+if (process.env.MODE === 'production') {
+  const corsOptions = {
+      origin: process.env.API_URL,
+  };
+  app.use(cors(corsOptions));
+}
+
 app.use(
   bodyParser.urlencoded({
     extended: true,
