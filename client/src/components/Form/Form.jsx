@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import EntryInfo from "../EntryInfo/EntryInfo";
 
 export default function Form({ text, handleSubmit, error }) {
   const [value, setValue] = useState({ username: "", password: "" });
@@ -60,6 +61,9 @@ export default function Form({ text, handleSubmit, error }) {
             </div>
           </div>
         </div>
+      </div>
+      <div className="entry-info mt-5">
+        <EntryInfo />
       </div>
     </div>
   );

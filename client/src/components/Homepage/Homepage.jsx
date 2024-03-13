@@ -2,6 +2,7 @@ import { useAuth } from "../AuthWrapper/AuthWrapper";
 import Button from "../Button/Button";
 import { Link } from "react-router-dom";
 import Logout from "../Logout/Logout";
+import EntryInfo from "../EntryInfo/EntryInfo";
 
 export default function Homepage() {
   const { user } = useAuth();
@@ -60,6 +61,9 @@ export default function Homepage() {
           </Button>
         </>
       )}
+      <div className="entry-info mt-5">
+        <EntryInfo />
+      </div>
     </div>
   );
 }

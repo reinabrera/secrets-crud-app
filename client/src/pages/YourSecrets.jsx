@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../components/AuthWrapper/AuthWrapper";
 import UserSecrets from "../components/UserSecrets/UserSecrets";
 import { Link } from "react-router-dom";
+import EntryInfo from "../components/EntryInfo/EntryInfo";
 
 export default function YourSecrets() {
   const [secrets, setSecrets] = useState([]);
@@ -92,6 +93,9 @@ export default function YourSecrets() {
             )}
           </form>
         </div>
+        <div className="entry-info mt-2">
+        <EntryInfo />
+      </div>
       </div>
       <div className="mt-5">
         <h2 className="mb-3">Your secrets</h2>
