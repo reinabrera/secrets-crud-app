@@ -23,7 +23,14 @@ function App() {
                 </PrivateRoute>
               }
             />
-            <Route path="/your-secrets" element={<PrivateRoute><YourSecrets /></PrivateRoute>}/>
+            <Route
+              path="/your-secrets"
+              element={
+                <PrivateRoute>
+                  <YourSecrets />
+                </PrivateRoute>
+              }
+            />
           </Routes>
         </BrowserRouter>
       </AuthProvider>

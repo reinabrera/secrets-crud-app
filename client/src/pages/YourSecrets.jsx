@@ -99,7 +99,7 @@ export default function YourSecrets() {
       </div>
       <div className="mt-5">
         <h2 className="mb-3">Your secrets</h2>
-        {secrets.length > 0 ? (
+        {secrets?.length > 0 ? (
           <UserSecrets
             secrets={secrets}
             auth={user.token}
