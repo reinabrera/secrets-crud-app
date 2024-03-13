@@ -94,3 +94,21 @@ button {
 .empty-secrets {
   min-height: 350px;
 }
+
+.animation-block {
+  width: 100%;
+  height: 50px;
+  background-color: black;
+  color: white;
+  font-size: 2rem;
+}
+
+.pulse {
+  animation: pulse 0.8s cubic-bezier(.4,0,.6,1) infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.8;
+  }
+}

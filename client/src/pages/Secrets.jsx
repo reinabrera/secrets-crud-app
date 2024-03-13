@@ -4,6 +4,7 @@ import Logout from "../components/Logout/Logout";
 
 export default function Secrets() {
   const [ secret, setSecret] = useState("");
+  const [ loading, setLoading] = useState(false);
   const token = localStorage.getItem("token");
   const mode = import.meta.env.VITE_MODE;
   const url = import.meta.env.VITE_API_URL;
@@ -22,6 +23,8 @@ export default function Secrets() {
         if (data.auth) {
           setSecret(data.secret);
         }
+      }).finally(() => {
+        setLoading(false);
       })
   }
 
@@ -31,6 +34,7 @@ export default function Secrets() {
 
 
   const handleClick = () => {
+    setLoading(true);
     fetchSecret();
   }
 
@@ -39,7 +43,7 @@ export default function Secrets() {
       <div className="container">
         <i className="fas fa-key fa-6x"></i>
         <h1 className="display-3">You've Discovered My Secret!</h1>
-        <p className="secret-text">{secret}</p>
+        <p className={`secret-text ${loading ? 'pulse' : ''}`}>{secret}</p>
         <hr />
         <button onClick={handleClick} className="btn btn-dark btn-lg mr-1">Random secret</button>
         <Link className="btn btn-primary btn-lg mr-1" to="/" role="button">
