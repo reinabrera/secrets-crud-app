@@ -21,6 +21,7 @@ async function main() {
     AND created_at <= NOW() - interval '5 minutes';
     `;
 
+    
     const deleteSecrets = await client.query(deleteSecretsQuery);
     console.log(`${deleteSecrets.rowCount} rows deleted in secrets table.`);
     if (deleteSecrets) {
