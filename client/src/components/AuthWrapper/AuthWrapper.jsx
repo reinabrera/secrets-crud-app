@@ -9,7 +9,6 @@ export function AuthProvider({ children }) {
   const url = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
-    console.log("token-changed");
     if (user.token) {
       fetch(`${mode == 'production' ? url : ""}/api/checkAuth`, {
         method: "GET",
@@ -21,7 +20,6 @@ export function AuthProvider({ children }) {
           return response.json();
         })
         .then((data) => {
-          console.log(data);
           if (!data.auth) {
             localStorage.removeItem("token");
             setUser(prev => {
