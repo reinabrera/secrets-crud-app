@@ -45,8 +45,8 @@ export default function Secrets() {
         <h1 className="display-3">You've Discovered My Secret!</h1>
         <p className={`secret-text ${loading ? 'pulse' : ''}`}>{secret}</p>
         <hr />
-        <button onClick={handleClick} className="btn btn-dark btn-lg mr-1">Random secret</button>
-        <Link className="btn btn-primary btn-lg mr-1" to="/" role="button">
+        <button onClick={handleClick} className="btn btn-dark btn-lg mr-1 mb-1">Random secret</button>
+        <Link className="btn btn-primary btn-lg mr-1 mb-1" to="/" role="button">
           Back to home
         </Link>
         <Logout />

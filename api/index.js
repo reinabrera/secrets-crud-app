@@ -52,10 +52,11 @@ const getRandomSecret = async () => {
 
 const createUser = async (data) => {
   try {
+    const username = data.username.toLowerCase();
     const hash = await bcrypt.hash(data.password, saltRounds);
     const result = await db.query(
       "INSERT INTO users (username, password_hash) VALUES ($1, $2) RETURNING *",
-      [data.username, hash]
+      [username, hash]
     );
 
     if (result.rowCount == 0) return { error: "Error creating your account." };
@@ -93,8 +94,9 @@ app.post("/api/register", async (req, res) => {
 });
 
 app.post("/api/login", async (req, res) => {
+  const usernameInput = req.body.username.toLowerCase();
   const result = await db.query("SELECT * FROM users WHERE username = $1", [
-    req.body.username,
+    usernameInput,
   ]);
 
   if (result.rowCount === 0) {

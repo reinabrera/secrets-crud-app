@@ -112,3 +112,7 @@ button {
     opacity: 0.8;
   }
 }
+
+.btn {
+  vertical-align: unset;
+}

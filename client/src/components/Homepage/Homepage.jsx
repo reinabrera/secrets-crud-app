@@ -15,7 +15,7 @@ export default function Homepage() {
       </div>
       {user.username ? (
         <>
-          <div><Button>
+          <div><Button customClass={"mb-1"}>
             <Link
               to="/secrets"
               className="text-decoration-none btn-lg text-body btn-light btn"
@@ -24,7 +24,7 @@ export default function Homepage() {
               View Secrets
             </Link>
           </Button>
-          <Button customClass={"ml-1"}>
+          <Button customClass={"ml-1 mb-1"}>
             <Link
               to="/your-secrets"
               className="btn btn-lg btn-primary text-decoration-none text-light"
@@ -33,7 +33,7 @@ export default function Homepage() {
               View your secrets
             </Link>
           </Button></div>
-          <div className="mt-2">
+          <div className="mb-1">
             <Logout />
           </div>
           
