@@ -233,6 +233,41 @@ app.post("/api/secret", verifyToken, async (req, res) => {
     .json({ message: "Successfully created secret", newSecret: add });
 });
 
-app.listen(port, '0.0.0.0', () => {
+const authenticateAPIKey = (req, res, next) => {
+  const apiKey = req.headers['x-api-key'];
+  const cronApiKey = process.env.CRON_API_KEY;
+  
+  if (cronApiKey !== apiKey) {
+    return res.status(401).json({ message: 'Unauthorized' });
+  }
+  next();
+};
+
+app.delete("/api/deleteEntries", authenticateAPIKey, async (req,res) => {
+  try {
+    const deleteSecretsQuery = `
+      DELETE FROM secrets
+      WHERE secret_id > 24
+      AND created_at <= NOW() - interval '24 hours';
+    `;
+
+    const deleteUsersQuery = `
+    DELETE FROM users
+    WHERE id > 3
+    AND created_at <= NOW() - interval '24 hours';
+    `;
+
+    const deleteSecrets = await db.query(deleteSecretsQuery);
+    res.status(200).json(`${deleteSecrets.rowCount} rows deleted in secrets table.`);
+    if (deleteSecrets) {
+      const deleteUsers = await db.query(deleteUsersQuery);
+      res.status(200).json(`${deleteUsers.rowCount} rows deleted in users table.`);
+    }
+  } catch (error) {
+    res.status(400).json("Error executing delete query:", error);
+  }
+});
+
+app.listen(port, () => {
   console.log(`Server started at port ${port}`);
 });
