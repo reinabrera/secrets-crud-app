@@ -258,10 +258,9 @@ app.delete("/api/deleteEntries", authenticateAPIKey, async (req,res) => {
     `;
 
     const deleteSecrets = await db.query(deleteSecretsQuery);
-    res.status(200).json(`${deleteSecrets.rowCount} rows deleted in secrets table.`);
     if (deleteSecrets) {
       const deleteUsers = await db.query(deleteUsersQuery);
-      res.status(200).json(`${deleteUsers.rowCount} rows deleted in users table.`);
+      res.status(200).json(`${deleteSecrets.rowCount} rows deleted in secrets table. ${deleteUsers.rowCount} rows deleted in users table. `);
     }
   } catch (error) {
     res.status(400).json("Error executing delete query:", error);
